@@ -1,4 +1,6 @@
 package com.willis.SpringSecurityExample.repo;
 
-public interface UserRepo extends JpaRepository{
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserRepo extends JpaRepository<Users,Integer> {
 }
