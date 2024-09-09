@@ -2,6 +2,8 @@ package com.willis.SpringSecurityExample.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -27,23 +29,30 @@ public class SecurityConfig {
                 .build();
 
     }
-
     @Bean
-    public UserDetailsService userDetailsServices(){
+    public AuthenticationProvider authenticationProvider(){
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        return provider;
+        }
 
-            UserDetails user1 = User
-                    .withDefaultPasswordEncoder()
-                    .username("henry")
-                    .password("h@123")
-                    .roles("USER")
-                    .build();
-        UserDetails user2 = User
-                .withDefaultPasswordEncoder()
-                .username("brian")
-                .password("b@123")
-                .roles("ADMIN")
-                .build();
-        return new InMemoryUserDetailsManager(user1, user2);}
+    }
+
+//    @Bean
+//    public UserDetailsService userDetailsServices(){
+//
+//            UserDetails user1 = User
+//                    .withDefaultPasswordEncoder()
+//                    .username("henry")
+//                    .password("h@123")
+//                    .roles("USER")
+//                    .build();
+//        UserDetails user2 = User
+//                .withDefaultPasswordEncoder()
+//                .username("brian")
+//                .password("b@123")
+//                .roles("ADMIN")
+//                .build();
+//        return new InMemoryUserDetailsManager(user1, user2);}
 
 
 
