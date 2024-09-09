@@ -1,4 +1,4 @@
-package com.willis.SpringSecurityExample;
+package com.willis.SpringSecurityExample.model;
 
 public class Student {
     private int id;
