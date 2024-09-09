@@ -1,5 +1,6 @@
 package com.willis.SpringSecurityExample.service;
 
+import com.willis.SpringSecurityExample.model.UserPrincipal;
 import com.willis.SpringSecurityExample.model.Users;
 import com.willis.SpringSecurityExample.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,10 @@ public class MyUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Users user = repo.findByUsername(username);
-        return null;
+        if(user == null){
+            System.out.println("User Not Found");
+            throw new UsernameNotFoundException("user not found");
+        }
+        return new UserPrincipal(user);
     }
 }
