@@ -35,7 +35,6 @@ public class SecurityConfig {
                         .requestMatchers("register","login")
                         .permitAll()
                         .anyRequest().authenticated())
-                .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .build();
