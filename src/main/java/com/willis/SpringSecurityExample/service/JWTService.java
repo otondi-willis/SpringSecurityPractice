@@ -14,7 +14,7 @@ import java.util.Map;
 public class JWTService {
     private String secretKey = "cf781a";
 
-    public String generateToken(String username) {
+    public static String generateToken(String username) {
 
         Map<String, Object> claims = new HashMap();
         return Jwts.builder()
