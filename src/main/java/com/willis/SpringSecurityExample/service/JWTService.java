@@ -5,7 +5,9 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Service;
 
+import javax.crypto.KeyGenerator;
 import java.security.Key;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +16,14 @@ import java.util.Map;
 
 @Service
 public class JWTService {
-    private static String secretKey = "cf781a";
+    private static String secretKey = "";
+    public JWTService(){
+        try {
+            KeyGenerator keyGen=KeyGenerator.getInstance("HmacSHA256");
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static String generateToken(String username) {
         Map<String, Object> claims = new HashMap();
