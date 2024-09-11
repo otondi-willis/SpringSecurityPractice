@@ -10,12 +10,13 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+
+
 @Service
 public class JWTService {
-    private String secretKey = "cf781a";
+    private static String secretKey = "cf781a";
 
     public static String generateToken(String username) {
-
         Map<String, Object> claims = new HashMap();
         return Jwts.builder()
                 .claims()
@@ -27,8 +28,11 @@ public class JWTService {
                 .signWith(getKey())
                 .compact();
     }
-    private Key getKey(){
+    private static Key getKey(){
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         return Keys.hmacShaKeyFor(keyBytes);
     }
+
+
+
 }
